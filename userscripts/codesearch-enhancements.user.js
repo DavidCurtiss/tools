@@ -222,7 +222,7 @@ function toggleRepo(repo) {
         setRepoToggleEnabled(repo, true);
     }
     saveReposToCookie();
-    window.onpopstate(); // tell codesearch to apply the new filter
+    window.dispatchEvent(new PopStateEvent('popstate')); // tell codesearch to apply the new filter
     $("#searchbox").focus();
     /*
     const searchbox = $("#searchbox");
@@ -243,7 +243,7 @@ function initRepos() {
     } else {
         history.replaceState(null, "", window.location.pathname + "?regex=true");
         setQueryStringReposFromCookie();
-        window.onpopstate(); // tell codesearch to apply the new filter
+        window.dispatchEvent(new PopStateEvent('popstate')); // tell codesearch to apply the new filter
     }
     cookieStore.addEventListener("change", (event) => {
         setQueryStringReposFromCookie();
